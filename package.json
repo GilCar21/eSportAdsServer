@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "build": "[my-framework] build --output public",
+    "build": "[my-framework] build --output vercel.json",
     "dev": "tsnd --exit-child src/server.ts"
   },
   "keywords": [],
