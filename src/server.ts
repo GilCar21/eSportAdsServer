@@ -26,6 +26,17 @@ app.get('/games', async (req, res) =>{
 
     return res.json(games);
 })
+app.post('/games', async (req, res) =>{
+    const { title, bannerUrl } = req.body;
+    const games = await prisma.game.create({
+        data:{
+            title,
+            bannerUrl,
+        }
+    })
+
+    return res.status(201).json(games)
+})
 
 app.post('/games/:id/ads', async (req, res) =>{
     const gameId = req.params.id;
@@ -71,7 +82,7 @@ app.get('/games/:id/ads', async (req, res) =>{
             gameId,
         },
         orderBy:{
-            createAt: 'desc',
+            createdAt: "desc"
         }
     })
     return res.json(ads.map(ad =>{
@@ -100,4 +111,4 @@ app.get('/ads/:id/discord', async (req, res) =>{
     })
 })
 
-app.listen(3001)
+app.listen(3001, () => console.log("Server is running"))
